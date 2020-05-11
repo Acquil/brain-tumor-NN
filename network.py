@@ -17,7 +17,7 @@ class Network():
                 nb_neurons (list): [64, 128, 256]
                 nb_layers (list): [1, 2, 3, 4]
                 activation (list): ['relu', 'elu']
-                optimizer (list): ['rmsprop', 'adam']
+                optimizer (list): ['adamax', 'adam']
         """
         self.accuracy = 0.
         self.nn_param_choices = nn_param_choices
@@ -49,5 +49,7 @@ class Network():
 
     def print_network(self):
         """Print out a network."""
+        logging.info("************************************************")
+        logging.info("Network details: ")
         logging.info(self.network)
         logging.info("Network accuracy: %.2f%%" % (self.accuracy * 100))

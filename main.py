@@ -7,7 +7,7 @@ from tqdm import tqdm
 logging.basicConfig(
     format='%(asctime)s - %(levelname)s - %(message)s',
     datefmt='%m/%d/%Y %I:%M:%S %p',
-    level=logging.DEBUG,
+    # level=logging.DEBUG,
     filename='log.txt'
 )
 
@@ -76,8 +76,8 @@ def generate(generations, population, nn_param_choices, dataset):
     # Sort our final population.
     networks = sorted(networks, key=lambda x: x.accuracy, reverse=True)
 
-    # Print out the top 5 networks.
-    print_networks(networks[:5])
+    # Print out the top 8 networks.
+    print_networks(networks[:8])
 
 def print_networks(networks):
     """Print a list of networks.
@@ -87,21 +87,22 @@ def print_networks(networks):
 
     """
     logging.info('-'*80)
+    logging.info('Top 8 networks')
+    logging.info('-'*80)
     for network in networks:
         network.print_network()
 
 def main():
     """Evolve a network."""
     generations = 10  # Number of times to evolve the population.
-    population = 20  # Number of networks in each generation.
+    population = 30  # Number of networks in each generation.
     dataset = 'tumour_small'
 
     nn_param_choices = {
-        'nb_neurons': [64, 128, 256, 512, 768, 1024],
-        'nb_layers': [1, 2, 3, 4],
-        'activation': ['relu', 'elu', 'tanh', 'sigmoid'],
-        'optimizer': ['rmsprop', 'adam', 'sgd', 'adagrad',
-                      'adadelta', 'adamax', 'nadam'],
+        'nb_neurons': [128,192, 256,384, 512],
+        'nb_layers': [2, 3, 4, 5, 6],
+        'activation': ['relu', 'elu', 'selu', 'sigmoid'],
+        'optimizer': ['sgd', 'adam', 'adamax', 'nadam', 'adagrad', 'adadelta'],
     }
 
     logging.info("***Evolving %d generations with population %d***" %

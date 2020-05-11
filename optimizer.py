@@ -1,9 +1,5 @@
 """
 Class that holds a genetic algorithm for evolving a network.
-
-Credit:
-    A lot of those code was originally inspired by:
-    http://lethain.com/genetic-algorithms-cool-name-damn-simple/
 """
 from functools import reduce
 from operator import add
@@ -11,8 +7,7 @@ import random
 from network import Network
 
 class Optimizer():
-    """Class that implements genetic algorithm for MLP optimization."""
-
+ 
     def __init__(self, nn_param_choices, retain=0.4,
                  random_select=0.1, mutate_chance=0.2):
         """Create an optimizer.
