@@ -18,6 +18,7 @@ class Network():
                 nb_layers (list): [1, 2, 3, 4]
                 activation (list): ['relu', 'elu']
                 optimizer (list): ['adamax', 'adam']
+                dropout (list) : [0.1,0.2,...]
         """
         self.accuracy = 0.
         self.nn_param_choices = nn_param_choices

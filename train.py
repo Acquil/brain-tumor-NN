@@ -1,4 +1,3 @@
-from keras.datasets import mnist, cifar10
 from keras.models import Sequential
 from keras.layers import Dense, Dropout
 from PIL import Image
@@ -87,6 +86,7 @@ def compile_model(network, nb_classes, input_shape):
     nb_neurons = network['nb_neurons']
     activation = network['activation']
     optimizer = network['optimizer']
+    dropout_rate = network['dropout']
 
     model = Sequential()
 
@@ -99,7 +99,7 @@ def compile_model(network, nb_classes, input_shape):
         else:
             model.add(Dense(nb_neurons, activation=activation))
 
-        model.add(Dropout(0.2))  # hard-coded dropout
+        model.add(Dropout(dropout_rate)) 
 
     # Output layer.
     model.add(Dense(nb_classes, activation='softmax'))

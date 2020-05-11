@@ -94,8 +94,8 @@ def print_networks(networks):
 
 def main():
     """Evolve a network."""
-    generations = 10  # Number of times to evolve the population.
-    population = 30  # Number of networks in each generation.
+    generations = 15  # Number of times to evolve the population.
+    population = 50  # Number of networks in each generation.
     dataset = 'tumour_small'
 
     nn_param_choices = {
@@ -103,6 +103,7 @@ def main():
         'nb_layers': [2, 3, 4, 5, 6],
         'activation': ['relu', 'elu', 'selu', 'sigmoid'],
         'optimizer': ['sgd', 'adam', 'adamax', 'nadam', 'adagrad', 'adadelta'],
+        'dropout' : [0.1, 0.2, 0.3, 0.4, 0.5 ]
     }
 
     logging.info("***Evolving %d generations with population %d***" %
