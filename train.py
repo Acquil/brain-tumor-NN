@@ -1,5 +1,5 @@
 from keras.models import Sequential
-from keras.layers import Dense, Dropout
+from keras.layers import Dense, Dropout, Conv2D, MaxPooling2D, Flatten
 from PIL import Image
 import numpy as np
 import cv2
@@ -14,7 +14,9 @@ early_stopper = EarlyStopping(patience=5)
 def get_data_small():
     nb_classes = 2
     batch_size = 10
-    input_shape = (128*128,)
+    # input_shape = (128*128,)
+    input_shape = (128,128,1)
+
 
     def fetch_image(item):
         image = Image.open(item)
@@ -56,14 +58,18 @@ def get_data_small():
     x_train = np.asarray(x_train,dtype=np.float32)
     x_test = list(map(lambda x:fetch_image(x),x_test))
     x_test = np.asarray(x_test,dtype=np.float32)
-
-    reshape_pixels = 128*128
-    x_train = x_train.reshape(train_length, reshape_pixels)
-    x_test = x_test.reshape(test_length, reshape_pixels)
+    # reshape_pixels = 128*128
+    # x_train = x_train.reshape(train_length, reshape_pixels)
+    # x_test = x_test.reshape(test_length, reshape_pixels)
 
     # 8 bits per pixel(monochrome)
     x_train /= 8
     x_test /=8
+
+    # New axis for 2d
+    x_train = x_train[...,np.newaxis]
+    x_test = x_test[...,np.newaxis]
+    print(x_test.shape)
 
     y_train = to_categorical(y_train, nb_classes)
     y_test = to_categorical(y_test, nb_classes)
@@ -83,24 +89,40 @@ def compile_model(network, nb_classes, input_shape):
     """
     # Get our network parameters.
     nb_layers = network['nb_layers']
+    nb_dense_layers = network['nb_dense_layers']
     nb_neurons = network['nb_neurons']
     activation = network['activation']
     optimizer = network['optimizer']
     dropout_rate = network['dropout']
+    filters = network['filters']
+    kernel_size = network['kernel_sizes']
 
     model = Sequential()
-
     # Add each layer.
+    print(network)
     for i in range(nb_layers):
-
         # Need input shape for first layer.
         if i == 0:
+            model.add(Conv2D(filters, kernel_size, activation=activation, padding="same", input_shape=input_shape))
+        else:
+            model.add(Conv2D(filters, kernel_size, activation=activation, padding="same"))
+        
+        model.add(MaxPooling2D(padding="same", pool_size=(2,2)))
+    
+    # Flatten
+    model.add(Flatten())   
+
+    for i in range(nb_dense_layers):
+        if i ==0:
             model.add(Dense(nb_neurons, activation=activation, input_shape=input_shape))
+            model.add(Dropout(dropout_rate)) 
+
+        elif i<nb_dense_layers-1:
+            model.add(Dense(nb_neurons, activation=activation))
+            model.add(Dropout(dropout_rate)) 
+
         else:
             model.add(Dense(nb_neurons, activation=activation))
-
-        model.add(Dropout(dropout_rate)) 
-
     # Output layer.
     model.add(Dense(nb_classes, activation='softmax'))
 

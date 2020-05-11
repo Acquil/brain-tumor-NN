@@ -99,8 +99,11 @@ def main():
     dataset = 'tumour_small'
 
     nn_param_choices = {
-        'nb_neurons': [128,192, 256,384, 512],
         'nb_layers': [2, 3, 4, 5, 6],
+        'nb_dense_layers' : [1, 2, 3],
+        'filters' : [16, 24, 32, 48, 64],
+        'kernel_sizes' : [2,3,4,5,6,7],
+        'nb_neurons': [128,192, 256,384, 512],
         'activation': ['relu', 'elu', 'selu', 'sigmoid'],
         'optimizer': ['sgd', 'adam', 'adamax', 'nadam', 'adagrad', 'adadelta'],
         'dropout' : [0.1, 0.2, 0.3, 0.4, 0.5 ]
