@@ -102,7 +102,7 @@ def generate_top_network_file(networks):
 def main():
     """Evolve a network."""
     generations = 10  # Number of times to evolve the population.
-    population = 20  # Number of networks in each generation.
+    population = 30  # Number of networks in each generation.
     # dataset = 'data-small'
     dataset = 'data-original'
 
