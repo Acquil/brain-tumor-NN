@@ -10,16 +10,6 @@ class Network():
     """
 
     def __init__(self, nn_param_choices=None):
-        """Initialize our network.
-
-        Args:
-            nn_param_choices (dict): Parameters for the network, includes:
-                nb_neurons (list): [64, 128, 256]
-                nb_layers (list): [1, 2, 3, 4]
-                activation (list): ['relu', 'elu']
-                optimizer (list): ['adamax', 'adam']
-                dropout (list) : [0.1,0.2,...]
-        """
         self.accuracy = 0.
         self.loss = 0
         # self.validation_accuracy = 0

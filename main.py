@@ -1,5 +1,5 @@
 import logging
-from optimizer import Optimizer
+from genetic_algorithm import GA
 from tqdm import tqdm
 import csv
 import sys
@@ -13,12 +13,7 @@ logging.basicConfig(
 )
 
 def train_networks(networks, dataset):
-    """Train each network.
-
-    Args:
-        networks (list): Current population of networks
-        dataset (str): Dataset to use for training/evaluating
-    """
+    
     pbar = tqdm(total=len(networks))
     for network in networks:
         network.train(dataset)
@@ -26,15 +21,7 @@ def train_networks(networks, dataset):
     pbar.close()
 
 def get_average_accuracy(networks):
-    """Get the average accuracy for a group of networks.
-
-    Args:
-        networks (list): List of networks
-
-    Returns:
-        float: The average accuracy of a population of networks.
-
-    """
+    
     total_accuracy = 0
     for network in networks:
         total_accuracy += network.accuracy
@@ -42,21 +29,13 @@ def get_average_accuracy(networks):
     return total_accuracy / len(networks)
 
 def generate(generations, population, nn_param_choices, dataset):
-    """Generate a network with the genetic algorithm.
-
-    Args:
-        generations (int): Number of times to evole the population
-        population (int): Number of networks in each generation
-        nn_param_choices (dict): Parameter choices for networks
-        dataset (str): Dataset to use for training/evaluating
-
-    """
-    optimizer = Optimizer(nn_param_choices)
-    networks = optimizer.create_population(population)
+  
+    evolver = GA(nn_param_choices)
+    networks = evolver.create_population(population)
 
     # Evolve the generation.
     for i in range(generations):
-        logging.info("***Doing generation %d of %d***" %
+        logging.info("***Generation %d of %d***" %
                      (i + 1, generations))
 
         # Train and get accuracy for networks.
@@ -72,21 +51,18 @@ def generate(generations, population, nn_param_choices, dataset):
         # Evolve, except on the last iteration.
         if i != generations - 1:
             # Do the evolution.
-            networks = optimizer.evolve(networks)
+            networks = evolver.evolve(networks)
 
     # Sort our final population.
-    networks = sorted(networks, key=lambda x: x.accuracy, reverse=True)
+    networks = sorted(networks, key=lambda x: (x.accuracy,-x.loss), reverse=True)
     # Print out the top 5 networks.
     print_networks(networks[:5])
 
 
 
 def print_networks(networks):
-    """Print a list of networks.
-
-    Args:
-        networks (list): The population of networks
-
+    """
+        Print a list of networks.
     """
     logging.info('-'*80)
     logging.info('Top 5 networks')

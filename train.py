@@ -97,7 +97,7 @@ def compile_model(network, nb_classes, input_shape):
     kernel_size = network['kernel_sizes']
 
     model = Sequential()
-    # Add each layer.
+    # Add conv+maxpool layer.
     for i in range(nb_layers):
         # Need input shape for first layer.
         if i == 0:
@@ -109,7 +109,7 @@ def compile_model(network, nb_classes, input_shape):
     
     # Flatten
     model.add(Flatten())   
-
+    # Add Dense(fully connected layer)  
     for i in range(nb_dense_layers):
         if i<nb_dense_layers-1:
             model.add(Dense(nb_neurons, activation=activation))
