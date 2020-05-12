@@ -13,7 +13,7 @@ early_stopper = EarlyStopping(patience=5)
 # smaller variant of the brain tumour dataset
 def get_data(data_type):
     nb_classes = 2
-    batch_size = 10
+    batch_size = 100
     # input_shape = (128*128,)
     input_shape = (128,128,1)
 
