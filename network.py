@@ -50,7 +50,7 @@ class Network():
         """
          # 1 is accuracy. 0 is loss. 4 is validation accuracy. 3 is validation loss
         if self.accuracy == 0.:
-            self.loss, self.accuracy, self.validation_loss, self.validation_accuracy = train_and_score(self.network, dataset)
+            self.accuracy, self.loss, self.validation_loss  = train_and_score(self.network, dataset)
             
 
     def print_network(self):
@@ -58,7 +58,7 @@ class Network():
         logging.info("************************************************")
         logging.info("Network details: ")
         logging.info(self.network)
-        logging.info("Network accuracy: %.2f%%" % (self.accuracy * 100))
-        logging.info("Network loss: %.2f%%" % (self.loss * 100))
-        logging.info("Validation accuracy: %.2f%%" % (self.validation_accuracy * 100))
+        logging.info("Accuracy: %.2f%%" % (self.accuracy * 100))
         logging.info("Validation loss: %.2f%%" % (self.validation_loss * 100))
+        # logging.info("Validation accuracy: %.2f%%" % (self.validation_accuracy * 100))
+        logging.info("Training loss: %.2f%%" % (self.loss * 100))

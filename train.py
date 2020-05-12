@@ -142,7 +142,7 @@ def train_and_score(network, dataset):
 
     model = compile_model(network, nb_classes, input_shape)
 
-    model.fit(x_train, y_train,
+    history = model.fit(x_train, y_train,
               batch_size=batch_size,
               epochs=1000,  # using early stopping, so no real limit
               verbose=0,
@@ -150,5 +150,5 @@ def train_and_score(network, dataset):
               callbacks=[early_stopper])
 
     score = model.evaluate(x_test, y_test, verbose=0)
-
-    return score  # 1 is accuracy. 0 is loss. 4 is validation accuracy. 3 is validation loss
+    return score[1], history.history['loss'],history.history['val_loss']
+    # return score  # 1 is accuracy. 0 is loss
