@@ -146,5 +146,5 @@ def train_and_score(network, dataset):
               callbacks=[early_stopper])
 
     score = model.evaluate(x_test, y_test, verbose=0)
-    return score[1], history.history['loss'],history.history['val_loss']
-    # return score  # 1 is accuracy. 0 is loss
+    # return score[1], history.history['loss'],history.history['val_loss']
+    return score  # 1 is accuracy. 0 is loss
