@@ -77,16 +77,7 @@ def get_data(data_type):
 
 
 def compile_model(network, nb_classes, input_shape):
-    """Compile a sequential model.
-
-    Args:
-        network (dict): the parameters of the network
-
-    Returns:
-        a compiled network.
-
-    """
-    # Get our network parameters.
+    # Get network parameters
     nb_layers = network['nb_layers']
     nb_dense_layers = network['nb_dense_layers']
     nb_neurons = network['nb_neurons']
@@ -126,13 +117,7 @@ def compile_model(network, nb_classes, input_shape):
     return model
 
 def train_and_score(network, dataset):
-    """Train the model, return test loss.
-
-    Args:
-        network (dict): the parameters of the network
-        dataset (str): Dataset to use for training/evaluating
-
-    """
+  
     nb_classes, batch_size, input_shape, x_train, \
             x_test, y_train, y_test = get_data(dataset)
 
