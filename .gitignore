@@ -1,4 +1,9 @@
 data/
+data-original/yes/*.jpg
+data-original/no/*.jpg
+data-small/yes/*.jpg
+data-small/yes/*.JPG
+data-small/no/*.jpg
 scTmp
 sc.rkworkplace
 # Byte-compiled / optimized / DLL files

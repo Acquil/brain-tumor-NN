@@ -11,7 +11,7 @@ from keras.callbacks import EarlyStopping
 early_stopper = EarlyStopping(patience=5)
 
 # smaller variant of the brain tumour dataset
-def get_data_small():
+def get_data(data_type):
     nb_classes = 2
     batch_size = 10
     # input_shape = (128*128,)
@@ -33,13 +33,13 @@ def get_data_small():
     x_test = []
     y_test = []
 
-    with open('meta/train.csv', 'r') as file:
+    with open('meta/{0}/train.csv'.format(data_type), 'r') as file:
         reader = csv.reader(file)
         for row in reader:
             x_train.append(row[0])
             y_train.append(row[1])
 
-    with open('meta/test.csv', 'r') as file:
+    with open('meta/{0}/test.csv'.format(data_type), 'r') as file:
         reader = csv.reader(file)
         for row in reader:
             x_test.append(row[0])
@@ -69,7 +69,6 @@ def get_data_small():
     # New axis for 2d
     x_train = x_train[...,np.newaxis]
     x_test = x_test[...,np.newaxis]
-    print(x_test.shape)
 
     y_train = to_categorical(y_train, nb_classes)
     y_test = to_categorical(y_test, nb_classes)
@@ -99,7 +98,6 @@ def compile_model(network, nb_classes, input_shape):
 
     model = Sequential()
     # Add each layer.
-    print(network)
     for i in range(nb_layers):
         # Need input shape for first layer.
         if i == 0:
@@ -139,19 +137,18 @@ def train_and_score(network, dataset):
         dataset (str): Dataset to use for training/evaluating
 
     """
-    if dataset == 'tumour_small':
-        nb_classes, batch_size, input_shape, x_train, \
-            x_test, y_train, y_test = get_data_small()
+    nb_classes, batch_size, input_shape, x_train, \
+            x_test, y_train, y_test = get_data(dataset)
 
     model = compile_model(network, nb_classes, input_shape)
 
     model.fit(x_train, y_train,
               batch_size=batch_size,
-              epochs=10000,  # using early stopping, so no real limit
+              epochs=1000,  # using early stopping, so no real limit
               verbose=0,
               validation_data=(x_test, y_test),
               callbacks=[early_stopper])
 
     score = model.evaluate(x_test, y_test, verbose=0)
 
-    return score[1]  # 1 is accuracy. 0 is loss.
+    return score[1],score[0]  # 1 is accuracy. 0 is loss.

@@ -1,7 +1,7 @@
-"""Entry point to evolving the neural network. Start here."""
 import logging
 from optimizer import Optimizer
 from tqdm import tqdm
+import csv
 
 # Setup logging.
 logging.basicConfig(
@@ -75,9 +75,10 @@ def generate(generations, population, nn_param_choices, dataset):
 
     # Sort our final population.
     networks = sorted(networks, key=lambda x: x.accuracy, reverse=True)
+    # Print out the top 10 networks.
+    print_networks(networks[:10])
 
-    # Print out the top 8 networks.
-    print_networks(networks[:8])
+
 
 def print_networks(networks):
     """Print a list of networks.
@@ -87,16 +88,23 @@ def print_networks(networks):
 
     """
     logging.info('-'*80)
-    logging.info('Top 8 networks')
+    logging.info('Top 10 networks')
     logging.info('-'*80)
     for network in networks:
         network.print_network()
 
+def generate_top_network_file(networks):
+    with open("meta/top_10.csv", "w", newline="") as f:
+        writer = csv.writer(f)
+        writer.writerows(networks)
+
+
 def main():
     """Evolve a network."""
-    generations = 15  # Number of times to evolve the population.
-    population = 50  # Number of networks in each generation.
-    dataset = 'tumour_small'
+    generations = 10  # Number of times to evolve the population.
+    population = 20  # Number of networks in each generation.
+    # dataset = 'tumour_small'
+    dataset = 'tumour_original'
 
     nn_param_choices = {
         'nb_layers': [2, 3, 4, 5, 6],

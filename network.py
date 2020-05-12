@@ -21,6 +21,7 @@ class Network():
                 dropout (list) : [0.1,0.2,...]
         """
         self.accuracy = 0.
+        self.loss = 0
         self.nn_param_choices = nn_param_choices
         self.network = {}  # (dic): represents MLP network parameters
 
@@ -46,7 +47,8 @@ class Network():
 
         """
         if self.accuracy == 0.:
-            self.accuracy = train_and_score(self.network, dataset)
+            self.accuracy, self.loss = train_and_score(self.network, dataset)
+            
 
     def print_network(self):
         """Print out a network."""
