@@ -103,8 +103,8 @@ def main():
     """Evolve a network."""
     generations = 10  # Number of times to evolve the population.
     population = 20  # Number of networks in each generation.
-    # dataset = 'data_small'
-    dataset = 'data_original'
+    # dataset = 'data-small'
+    dataset = 'data-original'
 
     nn_param_choices = {
         'nb_layers': [2, 3, 4, 5, 6],
