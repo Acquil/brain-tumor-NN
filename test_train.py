@@ -18,12 +18,12 @@ yes_tumour = []
 for root, dirs, files in os.walk('{0}/no/resized'.format(data)):
     for file in files:
         p=os.path.join(root,file)
-        no_tumour.append([p,"no"])
+        no_tumour.append([p,0])
 
 for root, dirs, files in os.walk('{0}/yes/resized'.format(data)):
     for file in files:
         p=os.path.join(root,file)
-        yes_tumour.append([p,"yes"])
+        yes_tumour.append([p,1])
 
 test_no_tumour, train_no_tumour = partition_data(no_tumour,70)
 test_yes_tumour, train_yes_tumour = partition_data(yes_tumour,70)
