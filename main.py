@@ -75,7 +75,7 @@ def generate(generations, population, nn_param_choices, dataset):
             networks = optimizer.evolve(networks)
 
     # Sort our final population.
-    networks = sorted(networks, key=lambda x: (x.accuracy,-x.nb_layers,-x.nb_dense_layers,-x.nb_neurons), reverse=True)
+    networks = sorted(networks, key=lambda x: (x.accuracy,-x.validation_loss), reverse=True)
     # Print out the top 5 networks.
     print_networks(networks[:5])
 
