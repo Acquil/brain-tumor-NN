@@ -151,4 +151,4 @@ def train_and_score(network, dataset):
 
     score = model.evaluate(x_test, y_test, verbose=0)
 
-    return score[1],score[0]  # 1 is accuracy. 0 is loss.
+    return score  # 1 is accuracy. 0 is loss. 4 is validation accuracy. 3 is validation loss

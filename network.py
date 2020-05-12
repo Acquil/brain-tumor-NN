@@ -22,6 +22,8 @@ class Network():
         """
         self.accuracy = 0.
         self.loss = 0
+        self.validation_accuracy = 0
+        self.validation_loss=0
         self.nn_param_choices = nn_param_choices
         self.network = {}  # (dic): represents MLP network parameters
 
@@ -46,8 +48,9 @@ class Network():
             dataset (str): Name of dataset to use.
 
         """
+         # 1 is accuracy. 0 is loss. 4 is validation accuracy. 3 is validation loss
         if self.accuracy == 0.:
-            self.accuracy, self.loss = train_and_score(self.network, dataset)
+            self.loss, self.accuracy, self.validation_loss, self.validation_accuracy = train_and_score(self.network, dataset)
             
 
     def print_network(self):
@@ -56,3 +59,6 @@ class Network():
         logging.info("Network details: ")
         logging.info(self.network)
         logging.info("Network accuracy: %.2f%%" % (self.accuracy * 100))
+        logging.info("Network loss: %.2f%%" % (self.loss * 100))
+        logging.info("Validation accuracy: %.2f%%" % (self.validation_accuracy * 100))
+        logging.info("Validation loss: %.2f%%" % (self.validation_loss * 100))
