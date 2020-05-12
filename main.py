@@ -2,6 +2,7 @@ import logging
 from optimizer import Optimizer
 from tqdm import tqdm
 import csv
+import sys
 
 # Setup logging.
 logging.basicConfig(
@@ -75,8 +76,8 @@ def generate(generations, population, nn_param_choices, dataset):
 
     # Sort our final population.
     networks = sorted(networks, key=lambda x: (x.accuracy,-x.nb_layers,-x.nb_dense_layers,-x.nb_neurons), reverse=True)
-    # Print out the top 10 networks.
-    print_networks(networks[:10])
+    # Print out the top 5 networks.
+    print_networks(networks[:5])
 
 
 
@@ -88,7 +89,7 @@ def print_networks(networks):
 
     """
     logging.info('-'*80)
-    logging.info('Top 10 networks')
+    logging.info('Top 5 networks')
     logging.info('-'*80)
     for network in networks:
         network.print_network()
@@ -99,12 +100,12 @@ def generate_top_network_file(networks):
         writer.writerows(networks)
 
 
-def main():
+def main(dataset='data-original'):
     """Evolve a network."""
-    generations = 10  # Number of times to evolve the population.
-    population = 30  # Number of networks in each generation.
+    generations = 12  # Number of times to evolve the population.
+    population = 20  # Number of networks in each generation.
     # dataset = 'data-small'
-    dataset = 'data-original'
+    # dataset = 'data-original'
 
     nn_param_choices = {
         'nb_layers': [2, 3, 4, 5, 6],
@@ -123,4 +124,4 @@ def main():
     generate(generations, population, nn_param_choices, dataset)
 
 if __name__ == '__main__':
-    main()
+    main(sys.argv[1])

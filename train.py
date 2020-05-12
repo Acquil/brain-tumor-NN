@@ -13,7 +13,7 @@ early_stopper = EarlyStopping(patience=5)
 # smaller variant of the brain tumour dataset
 def get_data(data_type):
     nb_classes = 2
-    batch_size = 100
+    batch_size = 50
     # input_shape = (128*128,)
     input_shape = (128,128,1)
 
@@ -111,11 +111,7 @@ def compile_model(network, nb_classes, input_shape):
     model.add(Flatten())   
 
     for i in range(nb_dense_layers):
-        if i ==0:
-            model.add(Dense(nb_neurons, activation=activation, input_shape=input_shape))
-            model.add(Dropout(dropout_rate)) 
-
-        elif i<nb_dense_layers-1:
+        if i<nb_dense_layers-1:
             model.add(Dense(nb_neurons, activation=activation))
             model.add(Dropout(dropout_rate)) 
 
