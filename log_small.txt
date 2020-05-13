@@ -1,0 +1,65 @@
+05/12/2020 12:24:13 PM - INFO - ***Evolving 12 generations with population 20***
+05/12/2020 12:24:13 PM - INFO - ***Doing generation 1 of 12***
+05/12/2020 12:25:26 PM - INFO - Generation average: 65.72%
+05/12/2020 12:25:26 PM - INFO - --------------------------------------------------------------------------------
+05/12/2020 12:25:26 PM - INFO - ***Doing generation 2 of 12***
+05/12/2020 12:25:54 PM - INFO - Generation average: 74.28%
+05/12/2020 12:25:54 PM - INFO - --------------------------------------------------------------------------------
+05/12/2020 12:25:54 PM - INFO - ***Doing generation 3 of 12***
+05/12/2020 12:26:21 PM - INFO - Generation average: 76.45%
+05/12/2020 12:26:21 PM - INFO - --------------------------------------------------------------------------------
+05/12/2020 12:26:21 PM - INFO - ***Doing generation 4 of 12***
+05/12/2020 12:26:44 PM - INFO - Generation average: 75.86%
+05/12/2020 12:26:44 PM - INFO - --------------------------------------------------------------------------------
+05/12/2020 12:26:44 PM - INFO - ***Doing generation 5 of 12***
+05/12/2020 12:27:12 PM - INFO - Generation average: 75.72%
+05/12/2020 12:27:12 PM - INFO - --------------------------------------------------------------------------------
+05/12/2020 12:27:12 PM - INFO - ***Doing generation 6 of 12***
+05/12/2020 12:27:38 PM - INFO - Generation average: 76.78%
+05/12/2020 12:27:38 PM - INFO - --------------------------------------------------------------------------------
+05/12/2020 12:27:38 PM - INFO - ***Doing generation 7 of 12***
+05/12/2020 12:27:57 PM - INFO - Generation average: 75.39%
+05/12/2020 12:27:57 PM - INFO - --------------------------------------------------------------------------------
+05/12/2020 12:27:57 PM - INFO - ***Doing generation 8 of 12***
+05/12/2020 12:28:19 PM - INFO - Generation average: 75.39%
+05/12/2020 12:28:19 PM - INFO - --------------------------------------------------------------------------------
+05/12/2020 12:28:19 PM - INFO - ***Doing generation 9 of 12***
+05/12/2020 12:28:44 PM - INFO - Generation average: 76.91%
+05/12/2020 12:28:44 PM - INFO - --------------------------------------------------------------------------------
+05/12/2020 12:28:44 PM - INFO - ***Doing generation 10 of 12***
+05/12/2020 12:29:08 PM - INFO - Generation average: 78.42%
+05/12/2020 12:29:08 PM - INFO - --------------------------------------------------------------------------------
+05/12/2020 12:29:08 PM - INFO - ***Doing generation 11 of 12***
+05/12/2020 12:29:34 PM - INFO - Generation average: 78.95%
+05/12/2020 12:29:34 PM - INFO - --------------------------------------------------------------------------------
+05/12/2020 12:29:34 PM - INFO - ***Doing generation 12 of 12***
+05/12/2020 12:29:54 PM - INFO - Generation average: 78.16%
+05/12/2020 12:29:54 PM - INFO - --------------------------------------------------------------------------------
+05/12/2020 12:29:54 PM - INFO - --------------------------------------------------------------------------------
+05/12/2020 12:29:54 PM - INFO - Top 5 networks
+05/12/2020 12:29:54 PM - INFO - --------------------------------------------------------------------------------
+05/12/2020 12:29:54 PM - INFO - ************************************************
+05/12/2020 12:29:54 PM - INFO - Network details: 
+05/12/2020 12:29:54 PM - INFO - {'nb_layers': 3, 'nb_dense_layers': 2, 'filters': 16, 'kernel_sizes': 6, 'nb_neurons': 384, 'activation': 'elu', 'optimizer': 'adadelta', 'dropout': 0.1}
+05/12/2020 12:29:54 PM - INFO - Accuracy: 85.53%
+05/12/2020 12:29:54 PM - INFO - Validation loss: 35.46%
+05/12/2020 12:29:54 PM - INFO - ************************************************
+05/12/2020 12:29:54 PM - INFO - Network details: 
+05/12/2020 12:29:54 PM - INFO - {'nb_layers': 5, 'nb_dense_layers': 2, 'filters': 24, 'kernel_sizes': 6, 'nb_neurons': 256, 'activation': 'relu', 'optimizer': 'adam', 'dropout': 0.3}
+05/12/2020 12:29:54 PM - INFO - Accuracy: 84.21%
+05/12/2020 12:29:54 PM - INFO - Validation loss: 61.93%
+05/12/2020 12:29:54 PM - INFO - ************************************************
+05/12/2020 12:29:54 PM - INFO - Network details: 
+05/12/2020 12:29:54 PM - INFO - {'nb_layers': 3, 'nb_dense_layers': 2, 'filters': 16, 'kernel_sizes': 6, 'nb_neurons': 512, 'activation': 'elu', 'optimizer': 'adamax', 'dropout': 0.4}
+05/12/2020 12:29:54 PM - INFO - Accuracy: 84.21%
+05/12/2020 12:29:54 PM - INFO - Validation loss: 53.38%
+05/12/2020 12:29:54 PM - INFO - ************************************************
+05/12/2020 12:29:54 PM - INFO - Network details: 
+05/12/2020 12:29:54 PM - INFO - {'nb_layers': 5, 'nb_dense_layers': 2, 'filters': 24, 'kernel_sizes': 6, 'nb_neurons': 256, 'activation': 'relu', 'optimizer': 'adam', 'dropout': 0.1}
+05/12/2020 12:29:54 PM - INFO - Accuracy: 82.89%
+05/12/2020 12:29:54 PM - INFO - Validation loss: 58.46%
+05/12/2020 12:29:54 PM - INFO - ************************************************
+05/12/2020 12:29:54 PM - INFO - Network details: 
+05/12/2020 12:29:54 PM - INFO - {'nb_layers': 5, 'nb_dense_layers': 1, 'filters': 24, 'kernel_sizes': 6, 'nb_neurons': 256, 'activation': 'elu', 'optimizer': 'adamax', 'dropout': 0.3}
+05/12/2020 12:29:54 PM - INFO - Accuracy: 82.89%
+05/12/2020 12:29:54 PM - INFO - Validation loss: 47.60%

@@ -62,7 +62,7 @@ def generate(generations, population, nn_param_choices, dataset):
 
 def print_networks(networks):
     """
-        Print a list of networks.
+        Print top 5 networks
     """
     logging.info('-'*80)
     logging.info('Top 5 networks')
@@ -78,8 +78,8 @@ def generate_top_network_file(networks):
 
 def main(dataset='data-original'):
     """Evolve a network."""
-    generations = 12  # Number of times to evolve the population.
-    population = 20  # Number of networks in each generation.
+    generations = 12  
+    population = 20  # networks
     # dataset = 'data-small'
     # dataset = 'data-original'
 
