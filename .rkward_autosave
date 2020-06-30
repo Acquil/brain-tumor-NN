@@ -129,7 +129,6 @@ plot(history2)
 
 
 
-library(tfhub)
 # ResNet
 classifier_url = "https://tfhub.dev/tensorflow/resnet_50/feature_vector/1"
 image_shape <- c(128L, 128L, 1L)
